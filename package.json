@@ -1,0 +1,27 @@
+{
+  "name": "helloWorld",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest"
+  },
+  "dependencies": {
+    "firebase": "^3.7.5",
+    "react": "16.2.0",
+    "react-native": "0.53.0",
+    "react-native-button": "^2.3.0",
+    "react-native-modalbox": "^1.4.2",
+    "react-native-router-flux": "^4.0.0-beta.28",
+    "react-native-swipeout": "^2.3.3"
+  },
+  "devDependencies": {
+    "babel-jest": "22.2.2",
+    "babel-preset-react-native": "4.0.0",
+    "jest": "22.3.0",
+    "react-test-renderer": "16.2.0"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}
