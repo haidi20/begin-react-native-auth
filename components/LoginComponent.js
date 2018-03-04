@@ -38,6 +38,39 @@ export default class LoginComponent extends Component{
         console.log(`gagal login. error = ${error}`);
       });
   }
+  componentDidMount(){
+    this.unsubscriber = firebase.auth().onAuthStateChanged((changeUser) => {
+      this.setState({
+        user : changeUser
+      })
+    });
+  }
+  componentWillUnmount(){
+    if (this.unsubscriber) {
+      this.unsubscriber() ;
+    }
+  }
+  onRegister = () => {
+    firebase.auth().createUserWithEmailAndPassword(this.state.typedEmail, this.state.typedPassword)
+    .then((loggedInUser) => {
+      this.setState({
+        user : loggedInUser
+      })
+      console.log(`register with user : ${JSON.stringify(loggedInUser.toJSON())}`);
+    })
+    .catch((error) => {
+      console.log(`register gagal. error = ${error}`);
+    })
+  }
+  onLogin = () => {
+    firebase.auth().signInWithEmailAndPassword(this.state.typedEmail, this.state.typedPassword)
+      .then((loggedInUser) => {
+        console.log(`login with user : ${JSON.stringify(loggedInUser.toJSON())}`);
+      })
+      .catch((error) => {
+        console.log(`login fail with error : ${error}`);
+      })
+  }
   render(){
     return(
       <View style={{
@@ -112,6 +145,42 @@ export default class LoginComponent extends Component{
         >
 
         </TextInput>
+
+        <View
+          style={{
+            flexDirection: 'row'
+        }}>
+          <Button
+            containerStyle={{
+              padding: 10,
+              borderRadius: 4,
+              margin: 10,
+              backgroundColor: 'green'
+            }}
+            style={{
+              fontSize: 17,
+              color: 'white'
+            }}
+            onPress={this.onRegister}
+          >
+            Register
+          </Button>
+          <Button
+            containerStyle={{
+              padding: 10,
+              margin: 10,
+              borderRadius: 4,
+              backgroundColor: 'blue',
+            }}
+            style={{
+              fontSize: 17,
+              color: 'white'
+            }}
+            onPress={this.onLogin}
+          >
+            Login
+          </Button>
+        </View>
       </View>
     )
   }
