@@ -72,7 +72,7 @@ export default class LoginComponent extends Component{
             width: 200,
             margin: 10,
             padding: 10,
-            borderColor: 'gray',
+            borderColor: 'grayy',
             borderWidth: 1,
             color: 'black'
         }}
