@@ -27,6 +27,7 @@ export default class LoginComponent extends Component{
   }
   onAnonymousLogin = () => {
     console.ignoredYellowBox = ['Remote debugger'];
+    console.log('mau berfungsi');
     firebase.auth().signInAnonymously()
       .then(() => {
         console.log('berhasil login');
@@ -151,31 +152,15 @@ export default class LoginComponent extends Component{
             flexDirection: 'row'
         }}>
           <Button
-            containerStyle={{
-              padding: 10,
-              borderRadius: 4,
-              margin: 10,
-              backgroundColor: 'green'
-            }}
-            style={{
-              fontSize: 17,
-              color: 'white'
-            }}
+            containerStyle={[tampilan.tombol, tampilan.hijau]}
+            style={tampilan.tulisan}
             onPress={this.onRegister}
           >
             Register
           </Button>
           <Button
-            containerStyle={{
-              padding: 10,
-              margin: 10,
-              borderRadius: 4,
-              backgroundColor: 'blue',
-            }}
-            style={{
-              fontSize: 17,
-              color: 'white'
-            }}
+            containerStyle={[tampilan.tombol, tampilan.biru]}
+            style={tampilan.tulisan}
             onPress={this.onLogin}
           >
             Login
@@ -185,3 +170,20 @@ export default class LoginComponent extends Component{
     )
   }
 }
+const tampilan = StyleSheet.create({
+  tombol : {
+    padding: 10,
+    borderRadius: 4,
+    margin: 10
+  },
+  tulisan : {
+    fontSize: 17,
+    color: 'white'
+  },
+  biru : {
+    backgroundColor: 'blue'
+  },
+  hijau : {
+    backgroundColor: 'green'
+  }
+});
